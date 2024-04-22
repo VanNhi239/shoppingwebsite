@@ -1,0 +1,70 @@
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="login">
+        <center><strong><h1>LOG IN</h1></strong></center>
+        <center><h3>Enter your login credentials</h3></center>
+        <style>
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 97vh; /* chiều cao tối thiểu là 97% của chiều cao viewport */
+                background-image: url("{% static 'app/images/banner/img6.jpeg' %}"); /* Thay đường dẫn với đường dẫn thực tế của hình ảnh */
+                background-size: cover;
+            }
+            .login {
+                width: 100%;
+                max-width: 500px; /* giới hạn chiều rộng tối đa của form */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.8); /* Đặt một lớp phủ trắng mờ để làm cho nội dung dễ đọc hơn */
+            }
+            label {
+                display: block;
+                margin-top: 10px;
+                margin-bottom: 5px;
+                text-align: left;
+                color: #074785;
+                font-weight: bold;
+            }
+            input, .button-login {
+                display: block;
+                width: 100%;
+                margin: auto;
+                margin-bottom: 15px;
+                padding: 10px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            .button-login {
+                padding: 15px;
+                border-radius: 10px;
+                border: none;
+                color: white;
+                background-color: #074785;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            a {
+                text-decoration: none;
+                color: #074785;
+            }
+            </style>            
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <label for="first">Username:</label>
+            <input type="text" id="first" name="username" placeholder="Enter your Username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+            <div>
+                <button class="button-login" type="submit">Log In</button>
+            </div>
+        </form>
+        <p>Not registered? 
+            <a href="{% url 'register' %}">Create an account</a>
+        </p>
+    </div>
+</div>
+{% endblock content %}

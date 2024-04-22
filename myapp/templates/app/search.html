@@ -1,0 +1,20 @@
+{% extends 'app/base.html' %}
+{% load static %}
+    {% block search %}
+    
+    <span>Search Result For:{{searched}}</span>
+    <div class="row" style="width: 100%; margin-top: 100px">
+        {%for product in keys %}
+        <div class="col-lg-3"><center><strong><h5>Search Result For: {{searched}}</h5></strong></center>
+          <center><img class="thumbnail" src="{{product.ImageURL}}"></center>
+          <div class="box-element product" height="50">
+              <h4><strong><center>{{product.name}}</center></strong></h4>
+              <hr>
+              <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+              <a class="btn btn-outline-success" href="/product/{{product.id}}">View Detail</a>
+              <h4 style="display: inline-block; float: right; color: #074785"><strong>{{product.price}}00đ</strong></h4>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endblock search %}
